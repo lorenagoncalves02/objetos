@@ -25,7 +25,7 @@ const compararEscolas = (e1, e2) => {
     if (e1.qtdeCursos > e2.qtdeCursos) {
         console.log(`Resultado: O SENAI ${e1.cidade} possui mais cursos`);
     } else if (e2.qtdeCursos > e1.qtdeCursos){
-        console.log(`Resultado: O ENAI ${e2.cidade} possui mais cursos.`);
+        console.log(`Resultado: O SENAI ${e2.cidade} possui mais cursos.`);
     } else {
         console.log(`Resultado: Ambas as unidades possuem a mesma quantidade de cursos.`);
     }
@@ -33,5 +33,9 @@ const compararEscolas = (e1, e2) => {
 }
 
 const escolaA = new Senai(12, 'Araraquara', 1800,12);
+const escolaB = new Senai(13, 'Taubate', 1700,15);
 
 escolaA.dadosEscola();
+escolaB.dadosEscola();
+compararEscolas(escolaA,escolaB);
+
