@@ -1,13 +1,14 @@
 class Senai{
-    codigo;
-    cidade;
-
+    // no js moderno, podemos omitir a declaração das variaveis no topo
+    // se formos atribuii-las dinamicamente, mas manter o método é essencial
     descreverEscola(){
-        // A palavra reservada this refere ao objeto no contexto atual. é usado para acessar propriedades e métodos do objeto corrente.
+        // o this´refere-se a instancia específica que está executando o código
         console.log(`O código ${this.codigo} pertence a Escola SENAI de ${this.cidade}.`)
     }
 }
 
+// instancia -> é o objeto real criado a partir do molde
+// usamos const para garantir que a variável sempre aponte para este objeto.
 const senaiArqa = new Senai();
 senaiArqa.codigo = 603;
 senaiArqa.cidade = 'Araraquara';
@@ -17,9 +18,9 @@ senaiMat.codigo = 145;
 senaiArqa.cidade = 'Matão';
 senaiMat.rua = 'Rua das Flores'
 
+// executando as ações (metodos)
 senaiArqa.descreverEscola();
 senaiMat.descreverEscola();
-
 
 
 

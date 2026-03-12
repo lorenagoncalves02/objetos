@@ -14,3 +14,4 @@ const senai = {
 senai.codigo = 608;
 senai.cidade = 'Matão';
 senai.descreverEscola()
+
