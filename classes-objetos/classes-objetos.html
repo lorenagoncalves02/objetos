@@ -4,8 +4,96 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Classes Objeto</title>
+
+    <!-- <script src="./09math.js"></script> -->
+     <style>
+        .sorteio{
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+            
+        }
+        
+     </style>
+
 </head>
+
 <body>
-    <script src="./09math.js"></script>
+
+    <div class="sorteio">
+        
+        <h1>Sorteador de numeros</h1>
+
+        <div class="sorteio__inputs">
+            <form class="sorteio__form">
+                <label for="min">Valor Mínimo: </label>
+                <input class="sorteio__input--min" type="text" name="min">
+
+                <label for="max">Valor Máximo:</label>
+                <input type="text" class="sorteio__input--max" name="max">
+
+                <div class="sorteio__acoes">
+                    <input class="sorteio__botao--sortear" type="submit" value="Sortear">
+                    <input class="sorteio__botao--reset" type="reset" value="Novo Sorteio">
+        
+                </div>
+            </form>
+
+            <div class="sorteio__resultado">
+                <p class="sorteio__texto--resultado"></p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        //selecionar os elementos
+        //capturar eles atraves do querySelector
+        const form = document.querySelector('.sorteio__form');
+        const inputMin = document.querySelector('.sorteio__input--min');
+        const inputMax = document.querySelector('.sorteio__input--max');
+        const resultado = document.querySelector('.sorteio__texto--resultado');
+
+
+        // string(é o evento que eu quero que ele faça) + função
+        // o event é um parametro que eu vou usar pra chamar o preventDeFault, so com ele eu consigo fazer ele aparecer na tela
+        form.addEventListener('submit', (event) => {
+            event.preventDeFault(); //controla o recarregamento
+
+            // trim serve pra remover os espaços do começo e do final caso tenha
+            // ex:    2
+            const min = inputMin.value.trim();
+            const max = inputMax.value.trim();
+
+            //validaçao pra ver se tem algum espaço em branco
+            //tres = pq ta verificando o tipo e o numero
+            if (min === '' || max === '') {
+                resultado.textContent = 'Preencha os dois campos';
+                return;
+            }
+
+            //transformando os campos em numeros
+            const numeroMin = Number(min);
+            const numeroMax = Number(max);
+
+            //validação pra saber se os campos foram preenchidos com numeros
+            if (isNaN(numeroMin) || isNaN(numeroMax)) {
+                resultado.textContent = 'Digite apenas números';
+                return; //colocando sempre o return pra ele retornar algo e recarregar a pagina
+            }
+
+            //logica do sorteio (versao simplificada)
+            const numeroSorteado = math.floor(math.random() * (numeroMax - numeroMin + 1)) + numeroMin;
+
+            resultado.textContent = `Número Sorteado: ${numeroSorteado}`;
+        });
+
+    </script>
+    
 </body>
 </html>
+
