@@ -1,14 +1,13 @@
 // logica para sortear numeros entre 1 e 15
 
-
-const gerarNumeroAleatorio = () => {
+const gerarNumeroAleatorio = (numero) => {
 
     // math.random() gera um numero entre 1 e 0 (exclusivo)
     let numeroAleatorio = Math.random;
     console.log(`Sorteio : ${numeroAleatorio}`);
 
     //multiplicamos por 15 para obter um numero entre 0 e 14 (exclusivo)
-    numeroAleatorio *= 15;
+    numeroAleatorio *= numero;
     console.log(`Multiplicar: ${numeroAleatorio}`);
 
     //math.floor() para arredondar para BAIXO um numero inteiro
@@ -25,7 +24,7 @@ const gerarNumeroAleatorio = () => {
 }
 
 //atribuindo a função a uma variavel
-let numeroSorteado = gerarNumeroAleatorio();
+let numeroSorteado = gerarNumeroAleatorio(20);
 
 //exibindo o numero sorteado
 console.log(`Numero sorteado: ${numeroSorteado}`);
