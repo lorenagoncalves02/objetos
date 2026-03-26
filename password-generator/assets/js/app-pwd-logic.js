@@ -40,27 +40,53 @@ const getSaudacao = () => {
 };
 
 
-
-
-
 /* Função que formata a data e hora atual em um formato legível
 Utiliza vários métodos do objeto Date para obter os componentes da data */
+const formatarDataHora = () => {
+  /** Cria um objeto com a data e hora atual */
+  const agora = new Date();
 
-/** Cria um objeto com a data e hora atual */
+  /** Array com os nomes dos dias da semana */
+  const diasSemana = [
+    'Domingo',
+    'Segunda-feira',
+    'Terça-feira',
+    'Quarta-feira',
+    'Quinta-feira',
+    'Sexta-feira',
+    'Sábado'
+  ];
+
+  /** Obtém o dia da semana */
+  const diaSemana = diasSemana[agora.getDay()];
+
+  /** Dados da data */
+  const dia = agora.getDate().toString().padStart(2, '0');
+  const mes = (agora.getMonth() + 1).toString().padStart(2, '0');
+  const ano = agora.getFullYear();
+
+  /**
+   * Hora como número (para lógica, se necessário no futuro)
+   * Aqui usamos apenas para formatação
+   */
+  const hora = agora.getHours().toString.padStart(2, '0');
+  const minuto = agora.getMinutes().toString().padStart(2, '0');
+  const segundo = agora.getSeconds().toString(). padStart(2, '0');
+
+  // retorna apenas a data e hora (sem saudação)
+  return `${diaSemana}, ${dia}/${mes}/${ano} ${hora}:${minuto}:${segundo}`;
 
 
-/** Array com os nomes dos dias da semana */
 
-/** Obtém o dia da semana */
-
-
-/** Dados da data */
+}
 
 
-/**
- * Hora como número (para lógica, se necessário no futuro)
- * Aqui usamos apenas para formatação
- */
+
+
+
+
+
+
 
 
 /** Retorna apenas a data e hora (sem saudação) */
