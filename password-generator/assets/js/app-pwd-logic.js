@@ -4,10 +4,10 @@ const sliderElement = document.querySelector('.app-pwd__slider'); // Elemento do
 const buttonElement = document.querySelector('.app-pwd__button'); // Botão de gerar senha
 const clearButton = document.querySelector('.app-pwd__button--clear'); //Botão para limpar o histórico de senhas
 const sizePassword = document.querySelector('.app-pwd__size'); // Elemento que mostra o tamanho da senha
-const password = document.querySelector('app-pwd__output'); // Elemento que exibe a senha gerada
-const containerPassword = document.querySelector('app-pwd__result'); // Container da senha gerada
-const welcomeElement = document.querySelector('app-pwd__welcome'); // Elemento de saudação
-const datetimeElement = document.querySelector('app-pwd__datetime'); // Elemento de data e hora
+const password = document.querySelector('.app-pwd__output'); // Elemento que exibe a senha gerada
+const containerPassword = document.querySelector('.app-pwd__result'); // Container da senha gerada
+const welcomeElement = document.querySelector('.app-pwd__welcome'); // Elemento de saudação
+const datetimeElement = document.querySelector('.app-pwd__datetime'); // Elemento de data e hora
 
 /* Objeto que contém os conjuntos de caracteres possíveis para a geração de senha*/
 // cada propriedade representa um tipo diferente de caractere
@@ -64,50 +64,53 @@ const formatarDataHora = () => {
   const dia = agora.getDate().toString().padStart(2, '0');
   const mes = (agora.getMonth() + 1).toString().padStart(2, '0');
   const ano = agora.getFullYear();
-
+  
   /**
    * Hora como número (para lógica, se necessário no futuro)
    * Aqui usamos apenas para formatação
    */
-  const hora = agora.getHours().toString.padStart(2, '0');
+  //typeof = pra eu ver o que ele ta recebendo
+  const hora = agora.getHours().toString().padStart(2, '0');
   const minuto = agora.getMinutes().toString().padStart(2, '0');
-  const segundo = agora.getSeconds().toString(). padStart(2, '0');
+  const segundo = agora.getSeconds().toString().padStart(2, '0');
 
   // retorna apenas a data e hora (sem saudação)
   return `${diaSemana}, ${dia}/${mes}/${ano} ${hora}:${minuto}:${segundo}`;
 
-
-
-}
-
-
-
-
-
-
-
-
-
-
-/** Retorna apenas a data e hora (sem saudação) */
-
-
+};
 
 /* Função que atualiza o cabeçalho com a saudação e a data/hora atual */
+const atualizarHeader = () => {
+  welcomeElement.textContent = `${getSaudacao()}!`;
+  datetimeElement.textContent = formatarDataHora();
+};
+
+
 
 /* Atualizar header a cada segundo */
-
+//posso escrever uma função dentro dqui, mas é mto mais facil colocar uma função ja pronta
+//vai executar a função a cada um segundo
+// setInterval(atualizarHeader, 1000);
 
 /* Inicializar header */
-
+atualizarHeader();
 
 /* Exibe inicialmente o valor do slider*/
+sizePassword.textContent = sliderElement.value;
 
 
 /* Atualiza o valor exibido do tamanho da senha conforme o slider é movimentado */
-
+// e-> evento
+// target usado p pegar o que estiver no input e atualizar a tela
+sliderElement.addEventListener('input', (e) => {
+  sizePassword.textContent = e.target.value;
+});
 
 /* Função principal para gerar a senha */
+const generatePassword = () => {
+
+};
+
 
 // String que armazenará todos os caracteres possíveis para a senha
 
@@ -164,27 +167,46 @@ const formatarDataHora = () => {
   
 
 /* Função para copiar a senha gerada para a área de transferência */
+const copyPassword = () => {
+  alert('Senha copiada com sucesso!');
+  navigator.clipboard.writeText(novaSenha);
+};
+
 
   // Exibe um alerta de sucesso
  // Copia a senha usando a API Clipboard
 
 
 /* Adicionar os event listeners para os eventos de clique */
+buttonElement.addEventListener('click', generatePassword); //gera nova senha
+containerPassword.addEventListener('click', copyPassword); //copia a senha
  // Gera nova senha
   // Copia a senha
 
 /* Função para limpar os dados e esconder os containers */
-
+const clearData = () => {
   // Limpa o histórico de senhas
- 
+  historicoSenhas = [];
+  novaSenha = '';
 
   /* Esconder os containers */
- 
+  containerPassword.classList.add('hide');
+  const historico = document.querySelector('app-pwd__history');
+  if (historico) {
+    historico.style.display = 'none';
+  }
 
   /* Reseta os checkboxes para o estado inicial (marcados) */
+  document.querySelector('.uppercase-check').checked = true;
+  document.querySelector('.lowercase-check'). checked = true;
+  document.querySelector('.numbers-check'). checked = true;
+  document.querySelector('.special-check'). checked = true;
 
+  /* Reseta os checkboxes para o estado inicial (marcados) */
+  sliderElement.value = 8;
+  sizePassword.textContent = '8';
 
-  /* Reseta o slider para o valor inicial */
-  
+};
 
 /* Adiciona o event listener para o botão de limpar */
+clearButton.addEventListener('click', clearData);
